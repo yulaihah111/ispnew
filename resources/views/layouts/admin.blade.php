@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('body')
-<div class="min-h-screen bg-slate-100 flex">
-    <aside class="w-72 shrink-0 border-r border-slate-200 bg-white min-h-screen">
+<div class="min-h-screen bg-slate-100 md:flex">
+    <aside class="w-full border-b border-slate-200 bg-white md:min-h-screen md:w-72 md:shrink-0 md:border-b-0 md:border-r">
         <div class="flex items-center gap-4 px-6 py-6">
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-500 text-2xl font-bold text-white">
                 K
@@ -18,27 +18,35 @@
             <ul class="space-y-2">
                 <li>
                     <a href="{{ route('admin.dashboard') }}"
-                       class="block rounded-2xl px-5 py-4 text-lg font-semibold {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50' }}">
-                        Dashboard
+                        class="block rounded-2xl px-5 py-4 text-lg font-semibold {{ request()->routeIs('admin.dashboard') ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50' }}">
+                            Dashboard
                     </a>
                 </li>
+
                 <li>
-                    <a href="#" class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="#"
+                       class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
                         Data Pelanggan
                     </a>
                 </li>
+
                 <li>
-                    <a href="#" class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="{{ route('admin.packages.index') }}"
+                    class="block rounded-2xl px-5 py-4 text-lg font-semibold {{ request()->routeIs('admin.packages.*') ? 'bg-blue-50 text-blue-600' : 'text-slate-700 hover:bg-slate-50' }}">
                         Paket Internet
                     </a>
                 </li>
+
                 <li>
-                    <a href="#" class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="#"
+                       class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
                         Manajemen Pembayaran
                     </a>
                 </li>
+
                 <li>
-                    <a href="#" class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
+                    <a href="#"
+                       class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
                         Riwayat Tagihan
                     </a>
                 </li>
@@ -49,11 +57,20 @@
     <div class="min-w-0 flex-1">
         <header class="border-b border-slate-200 bg-white">
             <div class="flex items-center justify-between px-6 py-5 lg:px-8">
-                <div class="text-2xl text-slate-500">☰</div>
+                <div class="text-2xl text-slate-500">
+                    ☰
+                </div>
 
                 <div class="flex items-center gap-4">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">
+                            Logout
+                        </button>
+                    </form>
+
                     <div class="text-right">
-                        <p class="text-xl font-semibold text-slate-900">Admin User</p>
+                        <p class="text-xl font-semibold text-slate-900">{{ auth()->user()->name }}</p>
                         <p class="text-sm text-slate-500">Administrator</p>
                     </div>
 

@@ -17,7 +17,13 @@
 
             <nav class="flex items-center gap-6 text-sm font-semibold text-slate-900">
                 <a href="{{ route('customer.dashboard') }}" class="hover:text-blue-600">Dashboard</a>
-                <a href="#" class="hover:text-blue-600">Logout</a>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="hover:text-blue-600">
+                        Logout
+                    </button>
+                </form>
             </nav>
         </div>
     </header>

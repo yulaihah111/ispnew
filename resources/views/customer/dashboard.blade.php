@@ -8,7 +8,7 @@
 <section class="mb-6 rounded-3xl bg-gradient-to-r from-sky-500 to-blue-600 px-7 py-10 text-white shadow-sm">
     <div class="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
         <div>
-            <h2 class="text-4xl font-bold">Selamat Datang, Ahmad Wijaya!</h2>
+            <h2 class="text-4xl font-bold">Selamat Datang, {{ auth()->user()->name }}!</h2>
 
             <div class="mt-5 flex flex-wrap items-center gap-3 text-lg">
                 <span>Premium 50 Mbps</span>

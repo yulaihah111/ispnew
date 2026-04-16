@@ -24,7 +24,7 @@
                 </li>
 
                 <li>
-                    <a href="#"
+                    <a href="{{ route('admin.customers.index') }}"
                        class="block rounded-2xl px-5 py-4 text-lg font-semibold text-slate-700 hover:bg-slate-50">
                         Data Pelanggan
                     </a>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
@@ -25,14 +26,17 @@ Route::middleware('auth')->group(function () {
     })->name('home');
 
     Route::prefix('admin')
-    ->name('admin.')
-    ->middleware('role:admin')
-    ->group(function () {
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        ->name('admin.')
+        ->middleware('role:admin')
+        ->group(function () {
+            Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource('packages', \App\Http\Controllers\Admin\PackageController::class)
-            ->except(['show', 'create', 'edit']);
-    });
+            Route::resource('packages', \App\Http\Controllers\Admin\PackageController::class)
+                ->except(['show', 'create', 'edit']);
+
+            Route::resource('customers', CustomerController::class)
+                ->except(['show', 'create', 'edit']);
+        });
 
     Route::prefix('customer')
         ->name('customer.')

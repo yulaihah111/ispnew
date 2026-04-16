@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\InvoiceController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -36,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
             Route::resource('customers', CustomerController::class)
                 ->except(['show', 'create', 'edit']);
+            Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
+            Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
+            Route::patch('/invoices/{invoice}/confirm', [InvoiceController::class, 'confirm'])->name('invoices.confirm');
         });
 
     Route::prefix('customer')

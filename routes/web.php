@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\ReminderController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Customer\DashboardController as CustomerDashboardController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\InvoiceController;
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -36,10 +38,17 @@ Route::middleware('auth')->group(function () {
                 ->except(['show', 'create', 'edit']);
 
             Route::resource('customers', CustomerController::class)
-                ->except(['show', 'create', 'edit']);
+                ->only(['index', 'store', 'destroy']);
+            Route::patch('/customers/{customer}/update-contact', [CustomerController::class, 'updateContact'])->name('customers.update-contact');
             Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
             Route::post('/invoices', [InvoiceController::class, 'store'])->name('invoices.store');
             Route::patch('/invoices/{invoice}/confirm', [InvoiceController::class, 'confirm'])->name('invoices.confirm');
+
+            // Reminder WhatsApp
+            Route::get('/reminders', [ReminderController::class, 'index'])->name('reminders.index');
+            Route::post('/reminders/send-all', [ReminderController::class, 'sendAll'])->name('reminders.send-all');
+            Route::post('/reminders/{invoice}/send', [ReminderController::class, 'sendManual'])->name('reminders.send-manual');
+
         });
 
     Route::prefix('customer')
@@ -47,5 +56,9 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:customer')
         ->group(function () {
             Route::get('/dashboard', [CustomerDashboardController::class, 'index'])->name('dashboard');
+            
+            // Invoices and transactions for Customers
+            Route::get('/invoices', [\App\Http\Controllers\Customer\InvoiceController::class, 'index'])->name('invoices.index');
+            Route::post('/invoices/{invoice}/pay', [\App\Http\Controllers\Customer\InvoiceController::class, 'pay'])->name('invoices.pay');
         });
 });

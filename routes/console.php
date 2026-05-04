@@ -19,9 +19,9 @@ Artisan::command('inspire', function () {
 | Pastikan Task Scheduler / Cron Job sudah dikonfigurasi:
 |   * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
 */
-Schedule::command(SendDueReminders::class)
-    ->dailyAt('08:00')
-    ->timezone('Asia/Jakarta')
-    ->withoutOverlapping()
-    ->appendOutputTo(storage_path('logs/reminder.log'));
+// Schedule::command(SendDueReminders::class)
+//     ->dailyAt('08:00')
+//     ->timezone('Asia/Jakarta')
+//     ->withoutOverlapping()
+//     ->appendOutputTo(storage_path('logs/reminder.log'));
 

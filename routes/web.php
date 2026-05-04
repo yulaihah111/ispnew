@@ -46,9 +46,6 @@ Route::middleware('auth')->group(function () {
 
             // Reminder WhatsApp
             Route::get('/reminders', [ReminderController::class, 'index'])->name('reminders.index');
-            Route::post('/reminders/send-all', [ReminderController::class, 'sendAll'])->name('reminders.send-all');
-            Route::post('/reminders/{invoice}/send', [ReminderController::class, 'sendManual'])->name('reminders.send-manual');
-
         });
 
     Route::prefix('customer')

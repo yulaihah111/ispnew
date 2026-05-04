@@ -24,7 +24,7 @@
             <div class="flex h-[100px] w-[100px] mx-auto mb-10 items-center justify-center rounded-[2rem] bg-white text-jobie-primary shadow-2xl text-[54px] font-black transform -rotate-12 transition-transform duration-500 hover:rotate-0 hover:scale-105 cursor-pointer border-4 border-indigo-200/30">
                 K
             </div>
-            <h1 class="text-[40px] font-extrabold tracking-tight mb-6 leading-[1.15]">Sistem Terpusat<br>Biller ISP</h1>
+            <h1 class="text-[40px] font-extrabold tracking-tight mb-6 leading-[1.15]">Sistem Krina Net</h1>
             <p class="text-[17px] text-indigo-100/80 font-medium leading-relaxed">Kelola pelanggan lokal tanpa hambatan. Kendalikan jaringan, konfigurasi tagihan, dan pacu performa operasional internet Anda secara presisi.</p>
         </div>
     </div>
